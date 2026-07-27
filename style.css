@@ -1,0 +1,51 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:#020617;
+    color:white;
+}
+
+textarea{
+    resize:none;
+    outline:none;
+}
+
+button{
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#475569;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#0f172a;
+}
+
+#progressBar{
+    transition:width .4s ease;
+}
+
+textarea:focus{
+    border:1px solid #6366f1;
+    box-shadow:0 0 15px rgba(99,102,241,.3);
+}
+
+input[type=file]{
+    color:white;
+}
