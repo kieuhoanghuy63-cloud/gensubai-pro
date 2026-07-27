@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GenSubAI Pro</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config={
+darkMode:'class',
+theme:{
+extend:{
+colors:{
+primary:'#6366f1',
+secondary:'#0f172a'
+}
+}
+}
+}
+</script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="bg-slate-950 text-white min-h-screen">
+
+<header class="sticky top-0 z-50 bg-slate-900 border-b border-slate-800">
+
+<div class="max-w-7xl mx-auto h-16 px-5 flex items-center justify-between">
+
+<div class="flex items-center gap-3">
+
+<div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center">
+
+<i data-lucide="sparkles"></i>
+
+</div>
+
+<div>
+
+<h1 class="font-bold text-lg">
+
+GenSubAI Pro
+
+</h1>
+
+<p class="text-xs text-slate-400">
+
+AI Subtitle Translator
+
+</p>
+
+</div>
+
+</div>
+
+<div class="flex gap-2">
+
+<button
+class="bg-indigo-600 hover:bg-indigo-700 transition px-5 py-2 rounded-xl">
+
+Đăng nhập
+
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="max-w-7xl mx-auto px-5 py-16">
+
+<div class="text-center">
+
+<h2 class="text-5xl font-bold">
+
+Dịch Video Sang Tiếng Việt Bằng AI
+
+</h2>
+
+<p class="mt-6 text-slate-400">
+
+Whisper • GPT • AI Voice
+
+</p>
+
+</div>
+
+<div
+class="mt-14 border-2 border-dashed border-slate-700 rounded-3xl p-14 hover:border-indigo-500 transition">
+
+<input
+id="videoInput"
+type="file"
+accept="video/*"
+class="hidden">
+
+<div class="text-center">
+
+<div
+class="w-24 h-24 rounded-full bg-slate-800 mx-auto flex items-center justify-center">
+
+<i
+data-lucide="upload"
+class="w-10 h-10 text-indigo-400">
+
+</i>
+
+</div>
+
+<h3 class="text-2xl font-bold mt-8">
+
+Kéo hoặc chọn Video
+
+</h3>
+
+<p class="text-slate-400 mt-3">
+
+MP4 • MOV • AVI • WEBM
+
+</p>
+
+<button
+
+onclick="document.getElementById('videoInput').click()"
+
+class="mt-8 bg-indigo-600 hover:bg-indigo-700 transition px-8 py-4 rounded-2xl">
+
+Chọn Video
+
+</button>
+
+</div>
+
+</div>
+        <!-- Kết quả -->
+        <div class="mt-12 grid md:grid-cols-2 gap-6">
+
+            <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800">
+                <h2 class="text-xl font-bold mb-4">Phụ đề gốc</h2>
+
+                <textarea
+                    id="originalText"
+                    class="w-full h-72 bg-slate-950 border border-slate-700 rounded-xl p-4 text-slate-300"
+                    placeholder="Sau khi upload video, phụ đề sẽ xuất hiện ở đây..."
+                ></textarea>
+            </div>
+
+            <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800">
+                <h2 class="text-xl font-bold mb-4">Bản dịch AI</h2>
+
+                <textarea
+                    id="translatedText"
+                    class="w-full h-72 bg-slate-950 border border-slate-700 rounded-xl p-4 text-slate-300"
+                    placeholder="Bản dịch sẽ xuất hiện tại đây..."
+                ></textarea>
+
+                <button
+                    id="translateBtn"
+                    class="w-full mt-5 bg-primary hover:opacity-90 rounded-xl py-3 font-semibold">
+                    Dịch bằng AI
+                </button>
+            </div>
+
+        </div>
+        <!-- Thanh tiến trình -->
+
+<div class="mt-10">
+
+    <div class="flex justify-between text-sm text-slate-400 mb-2">
+        <span>Tiến trình xử lý</span>
+        <span id="progressText">0%</span>
+    </div>
+
+    <div class="w-full h-3 bg-slate-800 rounded-full overflow-hidden">
+        <div
+            id="progressBar"
+            class="h-full bg-indigo-600 transition-all duration-500"
+            style="width:0%">
+        </div>
+    </div>
+
+</div>
+
+<!-- Nút tải xuống -->
+
+<div class="mt-8 flex flex-wrap gap-4">
+
+    <button
+        id="downloadSrt"
+        class="bg-emerald-600 hover:bg-emerald-700 px-6 py-3 rounded-xl font-semibold">
+        Tải SRT
+    </button>
+
+    <button
+        id="downloadTxt"
+        class="bg-slate-700 hover:bg-slate-600 px-6 py-3 rounded-xl font-semibold">
+        Tải TXT
+    </button>
+
+    <button
+        id="downloadVideo"
+        class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-xl font-semibold">
+        Xuất Video
+    </button>
+
+</div>
+
+</section>
+
+<footer class="border-t border-slate-800 mt-20">
+
+    <div class="max-w-7xl mx-auto px-5 py-8 text-center text-slate-500">
+
+        © 2026 GenSubAI Pro • Powered by OpenAI Whisper + GPT
+
+    </div>
+
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+lucide.createIcons();
+</script>
+
+</body>
+</html>
